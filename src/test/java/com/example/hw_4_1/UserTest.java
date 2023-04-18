@@ -15,19 +15,17 @@ class UserTest {
 
     @Test
     void shouldCreateUserParams() {
-        User user = new User("bob", "bob@mail.ru");
-        Assertions.assertEquals(true, user.getLogin()!=null&&user.getMail()!=null);
+        Assertions.assertThrows(IllegalArgumentException.class,() -> new User("", ""));
     }
 
     @Test
     void shouldCheckUserArgs() {
-        User user = new User("bob", "bob@mail.ru");
-        Assertions.assertEquals(true, user.checkUserArgs());
+        Assertions.assertThrows(IllegalArgumentException.class,() -> new User("bob", "bobmail.ru"));
     }
 
     @Test
     void shouldCompareLoginMail() {
-        User user = new User("bob", "bob@mail.ru");
-        Assertions.assertEquals(true, user.compareLoginMail());
+        Assertions.assertThrows(IllegalArgumentException.class,() -> new User("bob@mail.ru", "bob@mail.ru"));
+
     }
 }

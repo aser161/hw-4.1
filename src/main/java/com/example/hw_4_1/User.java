@@ -11,9 +11,12 @@ public class User {
     public User(String login , String mail) {
         this.login  = login ;
         this.mail = mail;
+        if (!this.checkUserArgs() || !this.compareLoginMail() || !this.checkAreArgs()) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public boolean checkUserArgs(){
+    private boolean checkUserArgs(){
         char[] chars = getMail().toCharArray();
         for (char sim:chars) {
             if (sim == '@') {
@@ -27,8 +30,14 @@ public class User {
         return false;
     }
 
-    public boolean compareLoginMail(){
+    private boolean compareLoginMail(){
         return !getLogin().equals(getMail());
+    }
+
+    private boolean checkAreArgs (){
+        boolean log = !this.getLogin().isEmpty() && !this.getLogin().isBlank() && this.getLogin() != null;
+        boolean mail = !this.getMail().isEmpty() && !this.getMail().isBlank() && this.getMail() != null;
+        return log && mail;
     }
 
     public String getLogin () {
