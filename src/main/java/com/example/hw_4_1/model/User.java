@@ -1,4 +1,6 @@
-package com.example.hw_4_1;
+package com.example.hw_4_1.model;
+
+import java.util.Objects;
 
 public class User {
     private String login ;
@@ -14,6 +16,19 @@ public class User {
         if (!this.checkUserArgs() || !this.compareLoginMail() || !this.checkAreArgs()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return login.equals(user.login) && mail.equals(user.mail);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, mail);
     }
 
     private boolean checkUserArgs(){

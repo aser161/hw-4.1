@@ -1,5 +1,6 @@
 package com.example.hw_4_1;
 
+import com.example.hw_4_1.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ class UserTest {
     @Test
     void shouldCreateUser() {
         User user = new User();
-        Assertions.assertEquals(true, user!=null);
+        assertNotNull(user);
     }
 
     @Test
@@ -20,7 +21,7 @@ class UserTest {
 
     @Test
     void shouldCheckUserArgs() {
-        Assertions.assertThrows(IllegalArgumentException.class,() -> new User("bob", "bobmail.ru"));
+        Assertions.assertThrows(IllegalArgumentException.class,() -> new User("bob", "bobMail.ru"));
     }
 
     @Test
